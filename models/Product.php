@@ -34,10 +34,10 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'reference', 'price', 'weight', 'category', 'stock'], 'required'],
-            [['price', 'weight'], 'number'],
+            [['price', 'weight'], 'number', 'min' => 0],
             [['category'], 'string'],
             [['stock'], 'default', 'value' => null],
-            [['stock'], 'integer'],
+            [['stock'], 'integer', 'min' => 0],
             [['name', 'reference'], 'string', 'max' => 255],
         ];
     }

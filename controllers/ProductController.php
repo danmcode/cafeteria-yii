@@ -88,6 +88,9 @@ class ProductController extends Controller
                 $product['stock'] = $product['stock'] - $soldProduct['amount'];
                 
                 if($product->save()){
+
+                    $soldProduct->save();
+
                     Yii::$app
                         ->getSession()
                         ->setFlash('message', 'Se ha vendido : ' . $soldProduct['amount'] . ' items del producto '. $product['name'] . " Restante: " . $product['stock']);

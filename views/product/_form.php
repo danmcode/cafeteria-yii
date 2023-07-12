@@ -13,10 +13,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->label('Nombre del producto:') ?>
     <?= $form->field($model, 'reference')->label('Referencia:') ?>
-    <?= $form->field($model, 'price')->label('Precio:') ?>
-    <?= $form->field($model, 'weight')->label('Peso:') ?>
+    <?= $form->field($model, 'price')->label('Precio:')
+        ->textInput([
+            'type' => 'number'
+        ]) ?>
+    <?= $form->field($model, 'weight')->label('Peso:')
+        ->textInput([
+            'type' => 'number'
+        ]) ?>
     <?= $form->field($model, 'category')->label('Categoria:') ?>
-    <?= $form->field($model, 'stock')->label('Stock:') ?>
+    <?= $form->field($model, 'stock')->label('Stock:')
+        ->textInput([
+            'type' => 'number'
+        ]) ?>
     
     <div class="form-group">
         <?= Html::submitButton('Guardar Producto', [

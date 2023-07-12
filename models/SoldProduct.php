@@ -31,7 +31,7 @@ class SoldProduct extends \yii\db\ActiveRecord
         return [
             [['product_id', 'amount'], 'required'],
             [['product_id', 'amount'], 'default', 'value' => null],
-            [['product_id', 'amount'], 'integer'],
+            [['product_id', 'amount'], 'integer', 'min' => 0],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::class, 'targetAttribute' => ['product_id' => 'id']],
         ];
     }
