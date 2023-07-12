@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td> <?= $product['weight'] ?> </td>
                             <td> <?= $product['category'] ?> </td>
                             <td> <?= $product['stock'] ?> </td>
-                            <td> <?= '' ?> </td>
+                            <td> <?= $product['created_at'] ?> </td>
                             <td>
                                 <div class="row">
                                     <div class="col-4">

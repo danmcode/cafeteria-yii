@@ -21,6 +21,7 @@ class m230711_174641_create_product_table extends Migration
             'category' => $this->text()->notNull(),
             'stock' => $this->integer()->notnull(),
         ]);
+
     }
 
     /**
