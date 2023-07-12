@@ -30,9 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             <?php endif ?>
 
-            <?php if(Yii::$app->session->hasFlash('error')): ?>
+            <?php if(Yii::$app->session->hasFlash('productError')): ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>!Error!</strong> <?= Yii::$app->session->getFlash('error') ?>
+                    <strong>!Error!</strong> <?= Yii::$app->session->getFlash('productError') ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php endif ?>

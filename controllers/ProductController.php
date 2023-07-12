@@ -5,7 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\models\Product;
-
+use app\models\SoldProduct;
 
 class ProductController extends Controller
 {
@@ -30,7 +30,7 @@ class ProductController extends Controller
                 Yii::$app->getSession()->setFlash('message', 'Producto creado correctamente');
                 return $this->redirect(['index']);
             }else{
-                Yii::$app->getSession()->setFlash('error', 'No se pudo crear el producto');
+                Yii::$app->getSession()->setFlash('productError', 'No se pudo crear el producto');
                 return $this->redirect(['index']);
             }
         }
@@ -50,7 +50,7 @@ class ProductController extends Controller
                 Yii::$app->getSession()->setFlash('message', 'Producto actualizado correctamente');
                 return $this->redirect(['index']);
             }else{
-                Yii::$app->getSession()->setFlash('error', 'No se pudo actualizar el producto');
+                Yii::$app->getSession()->setFlash('productError', 'No se pudo actualizar el producto');
                 return $this->redirect(['index']);
             }
         }
@@ -71,7 +71,7 @@ class ProductController extends Controller
             Yii::$app->getSession()->setFlash('message', 'Producto eliminado correctamente');
             return $this->redirect(['index']);
         }else{
-            Yii::$app->getSession()->setFlash('error', 'No se pudo eliminar el Producto');
+            Yii::$app->getSession()->setFlash('productError', 'No se pudo eliminar el Producto');
             return $this->redirect(['index']);
 
         }
@@ -79,9 +79,33 @@ class ProductController extends Controller
 
     function actionSell($id){
         $product = Product::findOne($id);
+        $soldProduct = new SoldProduct();
 
+        if ($soldProduct->load($this->request->post()) && $soldProduct->validate()) {
+
+            if($product['stock'] > 0 && $product['stock'] >= $soldProduct['amount']){
+                
+                $product['stock'] = $product['stock'] - $soldProduct['amount'];
+                
+                if($product->save()){
+                    Yii::$app
+                        ->getSession()
+                        ->setFlash('message', 'Se ha vendido : ' . $soldProduct['amount'] . ' items del producto '. $product['name'] . " Restante: " . $product['stock']);
+                    return $this->redirect(['index']);
+                }else{
+                    Yii::$app->getSession()->setFlash('productError', 'No se pudo registrar la venta');
+                    return $this->redirect(['index']);
+                }
+                
+            }else{
+                Yii::$app->getSession()->setFlash('productError', 'La cantidad minima para vender es: ' . $product['stock']);
+            }
+
+        }
+        
         return $this->render('sell', [
             'product' => $product,
+            'soldProduct' => $soldProduct,
         ]);
     }
 
