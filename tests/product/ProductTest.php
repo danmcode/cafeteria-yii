@@ -27,6 +27,6 @@ class ProductTest extends TestCase
         $product->save();
 
         // Verifica que el producto se haya creado correctamente en la base de datos
-        $this->assertTrue(Product::find()->where(['reference' => 'REF001'])->exists());
+        $this->assertTrue(Product::find()->where(['reference' => 'PROD-001'])->exists());
     }
 }

@@ -1,1 +1,1 @@
-{"version":1,"defects":{"ProductTest::testCreateProduct":4,"app\\models\\ProductTest::testCreateProduct":4},"times":{"ProductTest::testExample":0.002,"ProductTest::testCreateProduct":0,"app\\models\\ProductTest::testExample":0.001,"app\\models\\ProductTest::testCreateProduct":0}}
+{"version":1,"defects":{"ProductTest::testCreateProduct":3,"app\\models\\ProductTest::testCreateProduct":4},"times":{"ProductTest::testExample":0.002,"ProductTest::testCreateProduct":0.055,"app\\models\\ProductTest::testExample":0.001,"app\\models\\ProductTest::testCreateProduct":0}}
